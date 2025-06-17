@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service # the name of the service, which should be unique within the namespace. This is how you will refer to the service.
+spec:
+  type: ClusterIP # this is the default type, which creates a service accessible only within the cluster. If not specified, it defaults to ClusterIP.
+  ports:
+    - targetPort: 80 # the port that the service will forward traffic to on the pods. This should match the port that the application is listening on in the container.
+      port: 80 # the port that the service will expose. This is the port that other services or pods within the cluster will use to access this service.
+  selector: # the label selector to match the pods. This should match the labels of the pods you want to expose.
+    app: nginx
+    tier: frontend
